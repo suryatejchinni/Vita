@@ -163,7 +163,11 @@ var config = {
   
     // Save message
     saveMessage(name, company, email, phone, message,downloadURL,downloadURL2,downloadURL3);
-  
+    downloadURL = "";
+    downloadURL2 = "";
+    downloadURL3 = "";
+
+
     // Show alert
     document.querySelector('.alert').style.display = 'block';
   
