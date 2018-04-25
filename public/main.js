@@ -29,6 +29,12 @@ var config = {
   var btn1 = document.getElementById("vis1");
   var btn2 = document.getElementById("vis2");
   var btn3 = document.getElementById("vis3");
+
+  //Choices display button
+
+  var btn_chiros = document.getElementById("chiros_btn");
+  var btn_chimak = document.getElementById("chimak_btn");
+  var btn_crius = document.getElementById("crius_btn");
   
   
   // Listen for form submit
@@ -160,9 +166,14 @@ var config = {
     var email = getInputVal('email');
     var phone = getInputVal('phone');
     var message = getInputVal('message');
+
+    var value1 = getCheckedCheckboxesFor("prod");
+    var value2 = getCheckedCheckboxesFor("prod1");
+    var value3 = getCheckedCheckboxesFor("prod2");
+    var country = document.getElementById("country_picker").value;
   
     // Save message
-    saveMessage(name, company, email, phone, message,downloadURL,downloadURL2,downloadURL3);
+    saveMessage(name, company, email, phone, message,downloadURL,downloadURL2,downloadURL3,value1,value2,value3,country);
     downloadURL = "";
     downloadURL2 = "";
     downloadURL3 = "";
@@ -186,7 +197,7 @@ var config = {
   }
   
   // Save message to firebase
-  function saveMessage(name, company, email, phone, message,url1,url2,url3){
+  function saveMessage(name, company, email, phone, message,url1,url2,url3,value1,value2,value3,country){
     docRef.add({
       name: name,
       company:company,
@@ -196,12 +207,49 @@ var config = {
       url1:url1,
       url2:url2,
       url3:url3,
+      chiros:value1,
+      crius:value2,
+      chimak:value3,
+      country:country
     });
   }
 
+  function getCheckedCheckboxesFor(checkboxName) {
+    var checkboxes = document.querySelectorAll('input[name="' + checkboxName + '"]:checked'), values = [], valuess=" ";
+    Array.prototype.forEach.call(checkboxes, function(el) {
+        values.push(el.value);
+        valuess= valuess+""+el.value;
+    });
+    return valuess;
+}
 //Radio Button Logic
 
   function show1()
 {
-  
+  var x = document.getElementById("chiros_options");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
 }
+
+function show2()
+{
+  var x = document.getElementById("crius_options");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+function show3()
+{
+  var x = document.getElementById("chimak_options");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
