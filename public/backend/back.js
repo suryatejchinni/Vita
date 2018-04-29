@@ -28,6 +28,10 @@ var config = {
   var email_s = document.getElementById('email');
   var phone_s = document.getElementById('phone');
   var message_s = document.getElementById('message');
+  var alt_phone_s = document.getElementById('alt_phone');
+  var crius_s = document.getElementById('crius');
+  var chimak_s = document.getElementById('chimak');
+  var chiros_s = document.getElementById('chiros');
   var emptyref;
   var url1_s,url2_s,url3_s;
    
@@ -57,6 +61,12 @@ var config = {
         phone_s.value=doc.data().phone;
         message_s.value=doc.data().message;
         name_s.value=doc.data().name;
+        alt_phone_s.value = doc.data().Alternate_phone;
+        crius_s.value = doc.data().crius;
+        chimak_s.value = doc.data().chimak;
+        chiros_s.value = doc.data().chiros;
+        country_s.value = doc.data().country;
+
 
        // img1.setAttribute
       }
@@ -105,10 +115,15 @@ var config = {
     var company = getInputVal('company');
     var email = getInputVal('email');
     var phone = getInputVal('phone');
+    var alt_phone = getInputVal('Alternate_phone')
     var message = getInputVal('message');
+    var chiros = getInputVal('chiros');
+    var chimak = getInputVal('chimak');
+    var crius = getInputVal('crius');
+    var country = getInputVal('country');
   
     // Save message
-    saveMessage(name, company, email, phone, message);
+    saveMessage(name, company, email, phone,alt_phone, message,url1,url2,url3,value1,value2,value3,country);
   
     // Show alert
     document.querySelector('.alert').style.display = 'block';
@@ -120,6 +135,7 @@ var config = {
   
     // Clear form
     document.getElementById('contactForm').reset();
+
   }
   
   // Function to get get form values
@@ -128,16 +144,21 @@ var config = {
   }
   
   // Save message to firebase
-  function saveMessage(name, company, email, phone, message){
+  function saveMessage(name, company, email, phone,alt_phone, message,url1,url2,url3,value1,value2,value3,country){
     emptyref.set({
       name: name,
       company:company,
       email:email,
       phone:phone,
+      Alternate_phone:alt_phone,
       message:message,
-      url1:url1_s,
-      url2:url2_s,
-      url3:url3_s
+      url1:url1,
+      url2:url2,
+      url3:url3,
+      chiros:value1,
+      crius:value3,
+      chimak:value2,
+      country:country
     });
   }
 
